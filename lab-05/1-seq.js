@@ -1,0 +1,13 @@
+'use strict';
+
+const seq = (first) => {
+  const next = (value) => {
+    if (typeof value === 'number') return first(value);
+    return seq(x => first(value(x)));
+  };
+  return next;
+};
+
+console.log(seq(x => x + 7)(x => x * 2)(5));
+console.log(seq(x => x * 2)(x => x + 7)(5));
+console.log(seq(x => x + 1)(x => x * 2)(x => x / 3)(x => x - 4)(7));
